@@ -28,7 +28,7 @@ public class ProjectConfiguration extends WebMvcConfigurerAdapter {
 //    During User creation, A User can be allocated multiple roles/userProfiles, and so we need a converter to map a particular role/userProfile 
     //to a user based on profile id. Below provided is the converter class.
     @Autowired
-    RoleToUserProfileConverter roleToUserProfileConverter;
+   RoleToUserProfileConverter roleToUserProfileConverter;
     
     //Converter is required while you have a enum class and where you want to convert an object to string
     //and then to Long or int

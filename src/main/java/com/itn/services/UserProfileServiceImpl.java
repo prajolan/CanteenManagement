@@ -9,11 +9,15 @@ import com.itn.dao.UserProfileDao;
 import com.itn.entities.UserProfile;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Hp
  */
+@Service
+@Transactional
 public class UserProfileServiceImpl implements UserProfileService {
 
     @Autowired

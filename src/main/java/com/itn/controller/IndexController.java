@@ -48,11 +48,15 @@ public class IndexController {
         
     }
     //    -------------------------loading page for new FoodEntry------------------------
+    
+    //    -------------------------loading page for new UserEntry------------------------
+
 
     @RequestMapping(value = "/newuser")
     public String loadUserPage(ModelMap mp) {
         mp.addAttribute("user", new Users());
         return "userRegistration";
+        
         
     }
     //    -------------------------Saving new Entry------------------------

@@ -66,7 +66,7 @@ public class UserProfile implements Serializable {
 
     @Override
     public String toString() {
-        return "com.itn.Entities.UserProfile[ id=" + id + " ]";
+        return "com.itn.entities.UserProfile[ id=" + id + " ]";
     }
     
 }

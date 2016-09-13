@@ -8,11 +8,13 @@ package com.itn.dao;
 import com.itn.entities.UserProfile;
 import java.util.List;
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Hp
  */
+@Repository
 public class UserProfileDaoImpl extends AbstractDao<Long, UserProfile> implements UserProfileDao {
 
    @Override

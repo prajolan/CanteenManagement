@@ -48,8 +48,8 @@
                     <td><form:input path="employeeId" /></td>
                 </tr>
                 <tr>
-                    <td><form:label path="username">Username</form:label></td>
-                    <td><form:input path="username" /></td>
+                    <td><form:label path="userName">Username</form:label></td>
+                    <td><form:input path="userName" /></td>
                 </tr>
                 <tr>
                     <td><form:label path="password">password</form:label></td>
