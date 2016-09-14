@@ -44,48 +44,11 @@
     <body>
         
 
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Companies Name</a>
-                    </div>
-                    <ul class="nav navbar-nav">
-                        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-eye-open"></span> View Items</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-stats"></span> View Report</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Activity Log</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Create Account</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                    </ul>
-                </div>
-            </nav>
-
+           
        
 
 
-        <div class="container-fluid">
-            <div class="row content">
-                <div class="col-sm-3 sidenav" id="sidebar">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#section2">View Food/Drinks</a></li>
-                        <li><a href="#section3">View Report</a></li>
-                        <li><a href="#section3">Manage Account</a></li>
-                        <li><a href="#section3">Activity Log</a></li>
-                    </ul><br>
-                    <!----------------------------Search Bar Menu------------------------->
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search Item">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>
-                    <!---------------------------Search Bar Menu------------------------------>
-                </div>
+       
 
                 <div class="col-sm-9" id="div1">
                     <h4><small>RECENT POSTS</small></h4>
@@ -109,9 +72,7 @@
             </div>
         </div>
 
-        <footer class="container-fluid">
-            <p>Footer Text</p>
-        </footer>
+      
 
     </body>
 </html>

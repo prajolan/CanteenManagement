@@ -82,6 +82,11 @@
                 <artifactId>commons-logging</artifactId>
        
             </dependency>
+            <!--Apache Tiles Dependency-->
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-extras</artifactId>
+            </dependency>
             <!--Spirng Security-->
             <dependency>
                 <groupId>org.springframework.security</groupId>

@@ -10,6 +10,7 @@ import com.itn.entities.UserProfile;
 import com.itn.entities.Users;
 import com.itn.services.FoodInventoryService;
 import com.itn.services.UserProfileService;
+import com.itn.services.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,35 +33,45 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class IndexController {
-    
+
     @Autowired
     private FoodInventoryService foodInventoryService;
-    
+
     @Autowired
     private UserProfileService userProfileService;
-    
+
+    @Autowired
+    private UserService userService;
+
 //    -------------------------loading page for new FoodEntry------------------------
     @RequestMapping(value = "/new")
     public String loadPage(ModelMap mp) {
         mp.addAttribute("message", "Hello there, this is a test");
         mp.addAttribute("foodInventory", new FoodInventory());
         return "registration";
-        
+
     }
-    //    -------------------------loading page for new FoodEntry------------------------
-    
-    //    -------------------------loading page for new UserEntry------------------------
+    //    -------------------------loading page for new FoodEntry ends here------------------------
 
-
+    //    -------------------------loading page for new User Entry------------------------
     @RequestMapping(value = "/newuser")
     public String loadUserPage(ModelMap mp) {
         mp.addAttribute("user", new Users());
         return "userRegistration";
-        
-        
+
+    }
+    //    -------------------------loading page for new User Entry ends here------------------------
+
+    //    -------------------------Saving new USER Entry------------------------
+
+    @RequestMapping(value = "/newuser", method = RequestMethod.POST)
+    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
+        userService.save(user);
+        mp.addAttribute("users", userService.findAll());
+        return null;
+
     }
     //    -------------------------Saving new Entry------------------------
-
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String submitFood(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
@@ -68,19 +79,17 @@ public class IndexController {
         mp.addAttribute("foodItem", foodInventoryService.findAll());
 
         return "list";
-        
+
     }
-    
+
     //    -------------------------Displaying total list of Entry------------------------
-
-    @RequestMapping(value = "/list", method=RequestMethod.GET)
-    public String displayList(ModelMap mp){
-    mp.addAttribute("foodItem", foodInventoryService.findAll());
-    return null;
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String displayList(ModelMap mp) {
+        mp.addAttribute("foodItem", foodInventoryService.findAll());
+        return null;
     }
-    
-    //    -------------------------Deleting Entry------------------------
 
+    //    -------------------------Deleting Entry------------------------
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteFood(@RequestParam long id, ModelMap mp) {
         foodInventoryService.deleteById(id);
@@ -88,9 +97,8 @@ public class IndexController {
         return "redirect:/list";
 
     }
-    
-    //    -------------------------Editing Entry------------------------
 
+    //    -------------------------Editing Entry------------------------
     @RequestMapping(value = "/edit-{foodid}", method = RequestMethod.GET)
     public String editFood(ModelMap mp, @PathVariable long foodid) {
         FoodInventory food = foodInventoryService.findById(foodid);
@@ -98,14 +106,14 @@ public class IndexController {
         mp.addAttribute("edit", true);
         return "registration";
     }
-    
+
     @RequestMapping(value = "/edit-{userid}", method = RequestMethod.POST)
     public String postEditedUser(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
         foodInventoryService.update(foodInventory);
 
         return "redirect:list";
     }
-    
+
 //    ----------------------------------Security Log in------------------------------------------------
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     //When you type admin it directly goes to login page, this is inbuilt function by spring
@@ -140,19 +148,21 @@ public class IndexController {
         model.addAttribute("user", getPrincipal());
         return "accessDenied";
     }
-    
-    //    ----------------------------------Security Log in------------------------------------------------
-    
+
+    //    ----------------------------------Security Log in ends here------------------------------------------------
     @RequestMapping(value = "/home")
     public String loadHome(ModelMap mp) {
         return "homePage";
     }
+
     //Usued for enum classes to pull all the options of UserProfile
+
     @ModelAttribute("roles")
     public List<UserProfile> initializeProfiles() {
         return userProfileService.findAll();
     }
 //    ----------------------------------Get Principle Method-------------------------------------------
+
     private String getPrincipal() {
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -164,7 +174,6 @@ public class IndexController {
         }
         return userName;
     }
-    //    ----------------------------------Get Principle Method-------------------------------------------
+    //    ----------------------------------Get Principle Method ends here-------------------------------------------
 
-    
 }

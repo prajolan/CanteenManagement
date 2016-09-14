@@ -6,15 +6,19 @@
 package com.itn.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 /**
  *
@@ -37,6 +41,13 @@ public class ProjectConfiguration extends WebMvcConfigurerAdapter {
         registry.addConverter(roleToUserProfileConverter);
     }
     
+    //Creating a view resolver for Tiles View Resolver
+    @Bean
+    public TilesViewResolver tilesViewResolver(){
+    TilesViewResolver tilesView = new TilesViewResolver(); 
+    tilesView.setOrder(0);
+    return tilesView;
+    }
     
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
