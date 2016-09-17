@@ -83,10 +83,26 @@
        
             </dependency>
             <!--Apache Tiles Dependency-->
-            <dependency>
+<!--            <dependency>
                 <groupId>org.apache.tiles</groupId>
                 <artifactId>tiles-extras</artifactId>
-            </dependency>
+            </dependency>-->
+            <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+        </dependency>
             <!--Spirng Security-->
             <dependency>
                 <groupId>org.springframework.security</groupId>

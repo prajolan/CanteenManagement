@@ -28,38 +28,55 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.itn")
 public class ProjectConfiguration extends WebMvcConfigurerAdapter {
+
     //    a converter who will be responsible for converting an id into an Object.This is required to handle one-to-many relationship in JSP. 
 //    During User creation, A User can be allocated multiple roles/userProfiles, and so we need a converter to map a particular role/userProfile 
     //to a user based on profile id. Below provided is the converter class.
+
     @Autowired
-   RoleToUserProfileConverter roleToUserProfileConverter;
-    
+    RoleToUserProfileConverter roleToUserProfileConverter;
+
     //Converter is required while you have a enum class and where you want to convert an object to string
     //and then to Long or int
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(roleToUserProfileConverter);
     }
-    
+
     //Creating a view resolver for Tiles View Resolver
-    @Bean
-    public TilesViewResolver tilesViewResolver(){
-    TilesViewResolver tilesView = new TilesViewResolver(); 
-    tilesView.setOrder(0);
-    return tilesView;
+   @Bean
+    public TilesConfigurer tilesConfigurer(){
+        TilesConfigurer tilesConfigurer = new TilesConfigurer();
+        tilesConfigurer.setDefinitions(new String[] {"/WEB-INF/views/settingfiles/tiles.xml"});
+        tilesConfigurer.setCheckRefresh(true);
+        return tilesConfigurer;
     }
-    
+ 
+    /**
+     * Configure ViewResolvers to deliver preferred views.
+     */
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setSuffix(".jsp");
-        viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setOrder(1);//we need this when there is more than one resolver
+        TilesViewResolver viewResolver = new TilesViewResolver();
+//         viewResolver.setSuffix(".jsp");
+//        viewResolver.setPrefix("/WEB-INF/views/");
+        //viewResolver.setViewClass(JstlView.class);
         registry.viewResolver(viewResolver);
-
     }
+
+//    @Override
+//    public void configureViewResolvers(ViewResolverRegistry registry) {
+//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//        viewResolver.setSuffix(".jsp");
+//        viewResolver.setPrefix("/WEB-INF/views/");
+//        viewResolver.setViewClass(JstlView.class);
+//        viewResolver.setOrder(1);//we need this when there is more than one resolver
+//        registry.viewResolver(viewResolver);
+//
+//    }
+
     //    This is used to activate bootstrap or any extra resources such as css, bootstrap images etc
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/static/");

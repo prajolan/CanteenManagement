@@ -42,6 +42,25 @@ public class IndexController {
 
     @Autowired
     private UserService userService;
+    
+    
+    @RequestMapping(value = { "/"}, method = RequestMethod.GET)
+    public String homePage(ModelMap model) {
+        return "home";
+    }
+ 
+    @RequestMapping(value = { "/products"}, method = RequestMethod.GET)
+    public String productsPage(ModelMap model) {
+        return "products";
+    }
+ 
+    @RequestMapping(value = { "/contactus"}, method = RequestMethod.GET)
+    public String contactUsPage(ModelMap model) {
+        return "contactus";
+    }
+    
+    
+    
 
 //    -------------------------loading page for new FoodEntry------------------------
     @RequestMapping(value = "/new")
@@ -152,7 +171,7 @@ public class IndexController {
     //    ----------------------------------Security Log in ends here------------------------------------------------
     @RequestMapping(value = "/home")
     public String loadHome(ModelMap mp) {
-        return "homePage";
+        return "home";
     }
 
     //Usued for enum classes to pull all the options of UserProfile
