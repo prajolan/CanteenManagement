@@ -57,10 +57,17 @@ public class ProjectConfiguration extends WebMvcConfigurerAdapter {
      */
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        TilesViewResolver viewResolver = new TilesViewResolver();
+        TilesViewResolver tilesViewResolver = new TilesViewResolver();
 //         viewResolver.setSuffix(".jsp");
 //        viewResolver.setPrefix("/WEB-INF/views/");
         //viewResolver.setViewClass(JstlView.class);
+        tilesViewResolver.setOrder(0);
+        registry.viewResolver(tilesViewResolver);
+         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setSuffix(".jsp");
+        viewResolver.setPrefix("/WEB-INF/views/");
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setOrder(1);//we need this when there is more than one resolver
         registry.viewResolver(viewResolver);
     }
 

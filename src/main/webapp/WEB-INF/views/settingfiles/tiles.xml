@@ -4,18 +4,18 @@
 <tiles-definitions>  
   
    <!-- Base Definition -->
-   <definition name="base-definition" template="/WEB-INF/views/defaultLayout.jsp">  
+   <definition name="base-definition" template="/WEB-INF/views/layout/defaultLayout.jsp">  
        <put-attribute name="title" value="" />  
-       <put-attribute name="header" value="/WEB-INF/views/defaultHeader.jsp" />  
-       <put-attribute name="menu" value="/WEB-INF/views/defaultMenu.jsp" />  
+       <put-attribute name="header" value="/WEB-INF/views/template/defaultHeader.jsp" />  
+       <put-attribute name="menu" value="/WEB-INF/views/template/defaultMenu.jsp" />  
        <put-attribute name="body" value="" />  
-       <put-attribute name="footer" value="/WEB-INF/views/defaultFooter.jsp" />  
+       <put-attribute name="footer" value="/WEB-INF/views/template/defaultFooter.jsp" />  
    </definition>  
   
    <!-- Home Page -->
    <definition name="home" extends="base-definition">  
        <put-attribute name="title" value="Welcome" />  
-       <put-attribute name="body" value="/WEB-INF/views/home.jsp" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />  
    </definition>  
  
    <!-- Product Page -->
