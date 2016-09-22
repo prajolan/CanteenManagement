@@ -49,25 +49,12 @@ public class IndexController {
         return "home";
     }
  
-    @RequestMapping(value = { "/products"}, method = RequestMethod.GET)
-    public String productsPage(ModelMap model) {
-        return "products";
-    }
- 
-    @RequestMapping(value = { "/contactus"}, method = RequestMethod.GET)
-    public String contactUsPage(ModelMap model) {
-        return "contactus";
-    }
-    
-    
-    
 
 //    -------------------------loading page for new FoodEntry------------------------
-    @RequestMapping(value = "/new")
+    @RequestMapping(value = "/newFood")
     public String loadPage(ModelMap mp) {
-        mp.addAttribute("message", "Hello there, this is a test");
         mp.addAttribute("foodInventory", new FoodInventory());
-        return "registration";
+        return "addFood";
 
     }
     //    -------------------------loading page for new FoodEntry ends here------------------------
@@ -106,6 +93,12 @@ public class IndexController {
     public String displayList(ModelMap mp) {
         mp.addAttribute("foodItem", foodInventoryService.findAll());
         return null;
+    }
+    
+     @RequestMapping(value = "/viewFood", method = RequestMethod.GET)
+    public String displayFoodList(ModelMap mp) {
+        mp.addAttribute("foodItem", foodInventoryService.findAll());
+        return "viewFood";
     }
 
     //    -------------------------Deleting Entry------------------------
