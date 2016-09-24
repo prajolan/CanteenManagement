@@ -14,6 +14,8 @@ import com.itn.services.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class IndexController {
+    Logger logger=LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private FoodInventoryService foodInventoryService;
@@ -49,25 +52,12 @@ public class IndexController {
         return "home";
     }
  
-    @RequestMapping(value = { "/products"}, method = RequestMethod.GET)
-    public String productsPage(ModelMap model) {
-        return "products";
-    }
- 
-    @RequestMapping(value = { "/contactus"}, method = RequestMethod.GET)
-    public String contactUsPage(ModelMap model) {
-        return "contactus";
-    }
-    
-    
-    
 
 //    -------------------------loading page for new FoodEntry------------------------
-    @RequestMapping(value = "/new")
+    @RequestMapping(value = "/newFood")
     public String loadPage(ModelMap mp) {
-        mp.addAttribute("message", "Hello there, this is a test");
         mp.addAttribute("foodInventory", new FoodInventory());
-        return "registration";
+        return "addFood";
 
     }
     //    -------------------------loading page for new FoodEntry ends here------------------------
@@ -106,6 +96,12 @@ public class IndexController {
     public String displayList(ModelMap mp) {
         mp.addAttribute("foodItem", foodInventoryService.findAll());
         return null;
+    }
+    
+     @RequestMapping(value = "/viewFood", method = RequestMethod.GET)
+    public String displayFoodList(ModelMap mp) {
+        mp.addAttribute("foodItem", foodInventoryService.findAll());
+        return "viewFood";
     }
 
     //    -------------------------Deleting Entry------------------------
