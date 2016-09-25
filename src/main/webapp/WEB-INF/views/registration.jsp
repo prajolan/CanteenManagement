@@ -21,21 +21,23 @@
         ${message}
         <br>
         <%
-//               response.setIntHeader("Refresh", 1); This code will auto refresh the page
+//             This code will auto refresh the page
 
+//               response.setIntHeader("Refresh", 1);
             Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sd = new SimpleDateFormat("MMMM");
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd");
             sd.format(cal.getTime());
 
             out.println(sd.format(cal.getTime()));
         %>
         <br>
 
-        Today's date: <%= (new java.util.Date())%>
+      
 
         <form:form method="POST" modelAttribute="foodInventory">
             <table>
                 <form:input type="hidden" path="id"/>
+                <form:input type="hidden" path="date" value="<%=sd.format(cal.getTime())%>"/>
                 <tr>
                     <td><form:label path="foodName">Food Name</form:label></td>
                     <td><form:input path="foodName" /></td>

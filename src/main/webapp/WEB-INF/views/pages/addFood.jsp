@@ -1,27 +1,35 @@
+<%-- 
+    Document   : registration
+    Created on : Aug 3, 2016, 7:32:46 AM
+    Author     : Hp
+--%>
+
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
-    <div class="container-fluid">
-
-        
         <br>
         <%
-//               response.setIntHeader("Refresh", 1); This code will auto refresh the page
+//             This code will auto refresh the page
 
+//               response.setIntHeader("Refresh", 1);
             Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sd = new SimpleDateFormat("MMMM");
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy/MM/dd");
             sd.format(cal.getTime());
+
+            out.println(sd.format(cal.getTime()));
         %>
         <br>
 
-        Today's date: <%= (new java.util.Date())%>
+      
 
         <form:form method="POST" modelAttribute="foodInventory">
             <table>
                 <form:input type="hidden" path="id"/>
-                <form:input type="text" path="date" value="<%= (new java.util.Date())%>"/>
+                <form:input type="hidden" path="date" value="<%=sd.format(cal.getTime())%>"/>
                 <tr>
                     <td><form:label path="foodName">Food Name</form:label></td>
                     <td><form:input path="foodName" /></td>
@@ -51,4 +59,4 @@
        
     </form:form>
 
-</div>
+
