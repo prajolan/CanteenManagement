@@ -8,6 +8,7 @@ package com.itn.entities;
 
 import com.itn.util.State;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,16 +32,29 @@ public class FoodInventory implements Serializable {
     private String foodName;
     @Column
     private int price;
+    @Column
+    private Date date;
    @Column
-    private String state=State.ACTIVE.getState();  
+private boolean del=false;
 
-    public String getState() {
-        return state;
+    public boolean isDel() {
+        return del;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setDel(boolean del) {
+        this.del = del;
     }
+    
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    
    
     public Long getId() {
         return id;

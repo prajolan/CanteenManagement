@@ -41,7 +41,7 @@ public class FoodInventoryDaoImpl extends AbstractDao<Long, FoodInventory> imple
     public void deleteById(long id) {
         FoodInventory fid = getByKey(id);
 //        delete(fid);
-        fid.setState(State.INACTIVE.getState());
+        fid.setDel(true);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class FoodInventoryDaoImpl extends AbstractDao<Long, FoodInventory> imple
     @Override
     public List<FoodInventory> findAll() {
         //Does the character have to be u?? or can it be something else too??
-        Query query = getSession().createQuery("SELECT u FROM FoodInventory u WHERE u.state = 'Active'"); //to display all queries
+        Query query = getSession().createQuery("SELECT u FROM FoodInventory u WHERE u.del=false"); //to display all queries
         return query.list();
     }
 

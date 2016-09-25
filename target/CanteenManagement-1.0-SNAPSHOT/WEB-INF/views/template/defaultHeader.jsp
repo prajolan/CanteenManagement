@@ -1,4 +1,6 @@
- <div id="top-menu">
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
+<div id="top-menu">
        <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -13,7 +15,7 @@
                         <li><a href="#"><span class="glyphicon glyphicon-stats"></span> View Report</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Activity Log</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Create Account</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        <li><a href="<c:url value="/logout" />" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </div>
             </nav>

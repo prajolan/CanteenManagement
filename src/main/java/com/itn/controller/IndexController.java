@@ -79,7 +79,7 @@ public class IndexController {
     }
     //    -------------------------Saving new Entry------------------------
 
-    @RequestMapping(value = "/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/newFood", method = RequestMethod.POST)
     public String submitFood(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
         foodInventoryService.save(foodInventory);
         mp.addAttribute("foodItem", foodInventoryService.findAll());
@@ -95,20 +95,8 @@ public class IndexController {
         return null;
     }
     
-     @RequestMapping(value = "/viewFood", method = RequestMethod.GET)
-    public String displayFoodList(ModelMap mp) {
-        mp.addAttribute("foodItem", foodInventoryService.findAll());
-        return "viewFood";
-    }
+    
 
-    //    -------------------------Deleting Entry------------------------
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteFood(@RequestParam long id, ModelMap mp) {
-        foodInventoryService.deleteById(id);
-
-        return "redirect:/list";
-
-    }
 
     //    -------------------------Editing Entry------------------------
     @RequestMapping(value = "/edit-{foodid}", method = RequestMethod.GET)
