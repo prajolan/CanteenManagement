@@ -40,11 +40,7 @@ public class IndexController {
     @Autowired
     private FoodInventoryService foodInventoryService;
 
-    @Autowired
-    private UserProfileService userProfileService;
-
-    @Autowired
-    private UserService userService;
+   
     
     
     @RequestMapping(value = { "/"}, method = RequestMethod.GET)
@@ -63,23 +59,12 @@ public class IndexController {
     //    -------------------------loading page for new FoodEntry ends here------------------------
 
     //    -------------------------loading page for new User Entry------------------------
-    @RequestMapping(value = "/newuser")
-    public String loadUserPage(ModelMap mp) {
-        mp.addAttribute("user", new Users());
-        return "userRegistration";
-
-    }
+   
     //    -------------------------loading page for new User Entry ends here------------------------
 
     //    -------------------------Saving new USER Entry------------------------
 
-    @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
-        userService.save(user);
-        mp.addAttribute("users", userService.findAll());
-        return null;
-
-    }
+   
     //    -------------------------Saving new Entry------------------------
 
     @RequestMapping(value = "/newFood", method = RequestMethod.POST)
@@ -160,10 +145,7 @@ public class IndexController {
 
     //Usued for enum classes to pull all the options of UserProfile
 
-    @ModelAttribute("roles")
-    public List<UserProfile> initializeProfiles() {
-        return userProfileService.findAll();
-    }
+   
 //    ----------------------------------Get Principle Method-------------------------------------------
 
     private String getPrincipal() {

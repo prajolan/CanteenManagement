@@ -6,11 +6,16 @@
 package com.itn.controller;
 
 import com.itn.entities.FoodInventory;
+import com.itn.entities.UserProfile;
+import com.itn.entities.Users;
 import com.itn.services.FoodInventoryService;
+import com.itn.services.UserProfileService;
+import com.itn.services.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +29,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
     @Autowired
     private FoodInventoryService foodInventoryService;
+    
+     @Autowired
+    private UserService userService;
+     
+      @Autowired
+    private UserProfileService userProfileService;
+
+   
+
      @RequestMapping(value = "/viewFood", method = RequestMethod.GET)
     public String displayFoodList(ModelMap mp) {
         List<FoodInventory> list=foodInventoryService.findAll();
@@ -43,6 +57,23 @@ public class AdminController {
 
         return "redirect:viewFood";
 
+    }
+     @RequestMapping(value = "/newuser")
+    public String loadUserPage(ModelMap mp) {
+        mp.addAttribute("user", new Users());
+        return "userRegistration";
+
+    }
+     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
+    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
+        userService.save(user);
+        mp.addAttribute("users", userService.findAll());
+        return "redirect:newuser";
+
+    }
+     @ModelAttribute("roles")
+    public List<UserProfile> initializeProfiles() {
+        return userProfileService.findAll();
     }
     
 }
