@@ -6,12 +6,7 @@
 package com.itn.controller;
 
 import com.itn.entities.FoodInventory;
-import com.itn.entities.UserProfile;
-import com.itn.entities.Users;
 import com.itn.services.FoodInventoryService;
-import com.itn.services.UserProfileService;
-import com.itn.services.UserService;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -27,7 +22,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -40,8 +34,10 @@ public class IndexController {
     @Autowired
     private FoodInventoryService foodInventoryService;
 
-   
-    
+    @RequestMapping(value = { "/letssee"}, method = RequestMethod.GET)
+    public String letssee(ModelMap model) {
+        return "FoodManagement";
+    }
     
     @RequestMapping(value = { "/"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
@@ -76,12 +72,7 @@ public class IndexController {
 
     }
 
-    //    -------------------------Displaying total list of Entry------------------------
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String displayList(ModelMap mp) {
-        mp.addAttribute("foodItem", foodInventoryService.findAll());
-        return null;
-    }
+  
     
     
 

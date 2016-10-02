@@ -8,17 +8,17 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!--<link href="<c:url value="/static/css/bootstrap.min.css" />" rel="stylesheet">-->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+        <link href="<c:url value="/static/css/bootstrap.css" />" rel="stylesheet">
         <!--<link href="/static/font-awesome/css/font-awesome.min.css" rel="stylesheet">-->
 
         <!--For Gyph icons for the top menu, this is CDN version and not in the local repository-->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--> 
+        <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
         <title><tiles:getAsString name="title" /></title>
 
         <style>
-            
+
             /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 
             .row.content {height: 100%}
@@ -35,7 +35,7 @@
                 color: white;
                 padding: 15px;
             }
-            
+
             #sidebar{
                 padding-top: 10px;
             }
@@ -51,14 +51,14 @@
                 }
                 .row.content {height: auto;}
             }
-			#top-menu{
-			    margin-bottom: -18px
-				}
-				#sidebar{
-				    padding-top: 51px;
-    padding-bottom: 396px;
-	}
-            
+            #top-menu{
+                margin-bottom: -18px
+            }
+            #sidebar{
+                padding-top: 51px;
+                /*padding-bottom: 396px;*/
+            }
+
         </style>
 
 
@@ -73,7 +73,7 @@
             <tiles:insertAttribute name="menu" />
         </section>
 
-        <section id="site-content">
+        <section id="site-content" >
             <tiles:insertAttribute name="body" />
         </section>
 
