@@ -18,7 +18,7 @@
         <title><tiles:getAsString name="title" /></title>
 
         <style>
-            
+
             /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 
             .row.content {height: 100%}
@@ -35,7 +35,7 @@
                 color: white;
                 padding: 15px;
             }
-            
+
             #sidebar{
                 padding-top: 10px;
             }
@@ -51,14 +51,17 @@
                 }
                 .row.content {height: auto;}
             }
-			#top-menu{
-			    margin-bottom: -18px
-				}
-				#sidebar{
-				    padding-top: 51px;
-    padding-bottom: 396px;
-	}
-            
+            #top-menu{
+                margin-bottom: -18px
+            }
+            #sidebar{
+                padding-top: 51px;
+                padding-bottom: 396px;
+            }
+            #createUserStyle{
+                max-width: 500px;
+            }
+
         </style>
 
 

@@ -10,11 +10,11 @@
                         <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-eye-open"></span> View Items</a></li>
+                        <li><a href="home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li><a href="viewFood"><span class="glyphicon glyphicon-eye-open"></span> View Items</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-stats"></span> View Report</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Activity Log</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Create Account</a></li>
+                        <li><a href="newuser"><span class="glyphicon glyphicon-plus"></span> Create Account</a></li>
                         <li><a href="<c:url value="/logout" />" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </div>

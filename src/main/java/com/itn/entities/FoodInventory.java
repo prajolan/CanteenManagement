@@ -5,7 +5,6 @@
  */
 package com.itn.entities;
 
-
 import com.itn.util.State;
 import java.io.Serializable;
 import java.util.Date;
@@ -34,8 +33,8 @@ public class FoodInventory implements Serializable {
     private int price;
     @Column
     private Date date;
-   @Column
-private boolean del=false;
+    @Column
+    private boolean del = false;
 
     public boolean isDel() {
         return del;
@@ -44,7 +43,6 @@ private boolean del=false;
     public void setDel(boolean del) {
         this.del = del;
     }
-    
 
     public Date getDate() {
         return date;
@@ -54,8 +52,6 @@ private boolean del=false;
         this.date = date;
     }
 
-    
-   
     public Long getId() {
         return id;
     }

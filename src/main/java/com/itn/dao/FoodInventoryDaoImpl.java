@@ -51,8 +51,8 @@ public class FoodInventoryDaoImpl extends AbstractDao<Long, FoodInventory> imple
 
     @Override
     public List<FoodInventory> findAll() {
-        //Does the character have to be u?? or can it be something else too??
-        Query query = getSession().createQuery("SELECT u FROM FoodInventory u WHERE u.del=false"); //to display all queries
+        //Displaying all the items with boolen del status false
+        Query query = getSession().createQuery("SELECT u FROM FoodInventory u WHERE u.del=false");
         return query.list();
     }
 

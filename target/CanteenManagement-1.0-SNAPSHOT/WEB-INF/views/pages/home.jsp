@@ -1,8 +1,17 @@
- <div class="container-fluid">
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%> 
+<div class="container-fluid">
+     
+     <sec:authorize access="hasRole('ADMIN')">
+         <center> <h1>Admin Home Page</h1>
+         </center>
+            </sec:authorize>
+    <sec:authorize access="hasRole('USER')">
+         <center> <h1>User Home Page</h1>
+         </center>
+            </sec:authorize>
             <div class="row content">
 
                 <div class="col-sm-9" id="div1">
-                    <h4><small>RECENT POSTS</small></h4>
                     <hr>
 
                     <h2>I Love Food</h2>

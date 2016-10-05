@@ -6,11 +6,17 @@
 package com.itn.controller;
 
 import com.itn.entities.FoodInventory;
+import com.itn.entities.UserProfile;
+import com.itn.entities.Users;
 import com.itn.services.FoodInventoryService;
+import com.itn.services.UserProfileService;
+import com.itn.services.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +30,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
     @Autowired
     private FoodInventoryService foodInventoryService;
+    
+     @Autowired
+    private UserService userService;
+     
+      @Autowired
+    private UserProfileService userProfileService;
+
+    
+    @RequestMapping(value = "/home", method =RequestMethod.GET)
+    public String loadHome(ModelMap mp) {
+        return "home";
+    }
+    
      @RequestMapping(value = "/viewFood", method = RequestMethod.GET)
     public String displayFoodList(ModelMap mp) {
         List<FoodInventory> list=foodInventoryService.findAll();
@@ -36,6 +55,42 @@ public class AdminController {
         return "viewFood";
     }
     
+    //    -------------------------Editing Entry------------------------
+    @RequestMapping(value = "/edit-{foodid}", method = RequestMethod.GET)
+    public String editFood(ModelMap mp, @PathVariable long foodid) {
+        FoodInventory food = foodInventoryService.findById(foodid);
+        mp.addAttribute("foodInventory", food);
+        mp.addAttribute("edit", true);
+        return "addFood";
+    }
+
+    @RequestMapping(value = "/edit-{userid}", method = RequestMethod.POST)
+    public String postEditedUser(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
+        foodInventoryService.update(foodInventory);
+        //redirect function takes to the fucntion with value "viewFood" while return "viewFood" goes 
+        // to the viewFood page with out having anything on the list
+        return "redirect:viewFood";
+    }
+    
+     // -------------------------loading page for new FoodEntry------------------------
+    @RequestMapping(value = "/newFood")
+    public String loadPage(ModelMap mp) {
+        mp.addAttribute("foodInventory", new FoodInventory());
+        return "addFood";
+
+    }
+    
+    //    -------------------------Saving new Entry------------------------
+
+    @RequestMapping(value = "/newFood", method = RequestMethod.POST)
+    public String submitFood(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
+        foodInventoryService.save(foodInventory);
+        mp.addAttribute("foodItem", foodInventoryService.findAll());
+
+        return "viewFood";
+
+    }
+    
     //    -------------------------Deleting Entry------------------------
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteFood(@RequestParam long id, ModelMap mp) {
@@ -44,5 +99,22 @@ public class AdminController {
         return "redirect:viewFood";
 
     }
-    
+     @RequestMapping(value = "/newuser")
+    public String loadUserPage(ModelMap mp) {
+        mp.addAttribute("user", new Users());
+        return "createUser";
+
+    }
+     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
+    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
+        userService.save(user);
+        mp.addAttribute("users", userService.findAll());
+        return "redirect:newuser";
+
+    }
+
+    @ModelAttribute("roles")
+    public List<UserProfile> initializeProfiles() {
+        return userProfileService.findAll();
+    }
 }

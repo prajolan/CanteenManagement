@@ -29,5 +29,11 @@
        <put-attribute name="title" value="Add Food" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/addFood.jsp" />  
    </definition>  
+   
+    <!-- Create User page -->
+   <definition name="createUser" extends="base-definition">  
+       <put-attribute name="title" value="Create User" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/createUser.jsp" />  
+   </definition>  
   
 </tiles-definitions>

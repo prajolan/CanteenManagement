@@ -50,13 +50,7 @@ public class IndexController {
     }
  
 
-//    -------------------------loading page for new FoodEntry------------------------
-    @RequestMapping(value = "/newFood")
-    public String loadPage(ModelMap mp) {
-        mp.addAttribute("foodInventory", new FoodInventory());
-        return "addFood";
-
-    }
+//  
     //    -------------------------loading page for new FoodEntry ends here------------------------
 
     //    -------------------------loading page for new User Entry------------------------
@@ -77,16 +71,7 @@ public class IndexController {
         return null;
 
     }
-    //    -------------------------Saving new Entry------------------------
-
-    @RequestMapping(value = "/newFood", method = RequestMethod.POST)
-    public String submitFood(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
-        foodInventoryService.save(foodInventory);
-        mp.addAttribute("foodItem", foodInventoryService.findAll());
-
-        return "list";
-
-    }
+    
 
     //    -------------------------Displaying total list of Entry------------------------
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -98,39 +83,26 @@ public class IndexController {
     
 
 
-    //    -------------------------Editing Entry------------------------
-    @RequestMapping(value = "/edit-{foodid}", method = RequestMethod.GET)
-    public String editFood(ModelMap mp, @PathVariable long foodid) {
-        FoodInventory food = foodInventoryService.findById(foodid);
-        mp.addAttribute("foodInventory", food);
-        mp.addAttribute("edit", true);
-        return "registration";
-    }
-
-    @RequestMapping(value = "/edit-{userid}", method = RequestMethod.POST)
-    public String postEditedUser(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
-        foodInventoryService.update(foodInventory);
-
-        return "redirect:list";
-    }
+    
 
 //    ----------------------------------Security Log in------------------------------------------------
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     //When you type admin it directly goes to login page, this is inbuilt function by spring
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());//This only gives the username so it can compare for sercituy
-        return "welcome";
+        return "redirect:/admin/home";
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     //When you type admin it directly goes to login page, this is inbuilt function by spring
     public String userPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());//This only gives the username so it can compare for sercituy
-        return "welcome";
+        return "home";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
+       
         return "login";
     }
 
@@ -157,10 +129,7 @@ public class IndexController {
 
     //Usued for enum classes to pull all the options of UserProfile
 
-    @ModelAttribute("roles")
-    public List<UserProfile> initializeProfiles() {
-        return userProfileService.findAll();
-    }
+    
 //    ----------------------------------Get Principle Method-------------------------------------------
 
     private String getPrincipal() {
