@@ -6,14 +6,11 @@
 package com.itn.controller;
 
 import com.itn.entities.FoodInventory;
-import com.itn.entities.UserProfile;
-import com.itn.entities.Users;
 import com.itn.services.FoodInventoryService;
-import com.itn.services.UserProfileService;
-import com.itn.services.UserService;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +22,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -33,16 +29,15 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class IndexController {
+    Logger logger=LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private FoodInventoryService foodInventoryService;
 
-    @Autowired
-    private UserProfileService userProfileService;
-
-    @Autowired
-    private UserService userService;
-    
+    @RequestMapping(value = { "/letssee"}, method = RequestMethod.GET)
+    public String letssee(ModelMap model) {
+        return "FoodManagement";
+    }
     
     @RequestMapping(value = { "/"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
@@ -54,12 +49,7 @@ public class IndexController {
     //    -------------------------loading page for new FoodEntry ends here------------------------
 
     //    -------------------------loading page for new User Entry------------------------
-    @RequestMapping(value = "/newuser")
-    public String loadUserPage(ModelMap mp) {
-        mp.addAttribute("user", new Users());
-        return "userRegistration";
-
-    }
+   
     //    -------------------------loading page for new User Entry ends here------------------------
 
     //    -------------------------Saving new USER Entry------------------------
@@ -72,13 +62,19 @@ public class IndexController {
 
     }
     
+   
+    //    -------------------------Saving new Entry------------------------
 
-    //    -------------------------Displaying total list of Entry------------------------
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String displayList(ModelMap mp) {
+    @RequestMapping(value = "/newFood", method = RequestMethod.POST)
+    public String submitFood(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
+        foodInventoryService.save(foodInventory);
         mp.addAttribute("foodItem", foodInventoryService.findAll());
-        return null;
+
+        return "list";
+
     }
+
+  
     
     
 
@@ -130,6 +126,7 @@ public class IndexController {
     //Usued for enum classes to pull all the options of UserProfile
 
     
+   
 //    ----------------------------------Get Principle Method-------------------------------------------
 
     private String getPrincipal() {

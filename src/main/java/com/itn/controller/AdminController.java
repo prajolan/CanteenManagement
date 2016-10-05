@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +45,8 @@ public class AdminController {
         return "home";
     }
     
+   
+
      @RequestMapping(value = "/viewFood", method = RequestMethod.GET)
     public String displayFoodList(ModelMap mp) {
         List<FoodInventory> list=foodInventoryService.findAll();
@@ -103,6 +107,7 @@ public class AdminController {
     public String loadUserPage(ModelMap mp) {
         mp.addAttribute("user", new Users());
         return "createUser";
+        return "userRegistration";
 
     }
      @RequestMapping(value = "/newuser", method = RequestMethod.POST)
@@ -117,4 +122,9 @@ public class AdminController {
     public List<UserProfile> initializeProfiles() {
         return userProfileService.findAll();
     }
+     @ModelAttribute("roles")
+    public List<UserProfile> initializeProfiles() {
+        return userProfileService.findAll();
+    }
+    
 }

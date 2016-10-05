@@ -9,6 +9,8 @@ import com.itn.util.UserProfileType;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +27,10 @@ public class UserProfile implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="TYPE", length=15, unique=true)
-    private String type = UserProfileType.USER.getUserProfileType();
+    
+    @Column(name="TYPE", unique=true)
+    @Enumerated(EnumType.ORDINAL)
+    private UserProfileType type = UserProfileType.USER;
 
     public Long getId() {
         return id;
@@ -36,13 +40,14 @@ public class UserProfile implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
+    public UserProfileType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(UserProfileType type) {
         this.type = type;
     }
+
 
     @Override
     public int hashCode() {
