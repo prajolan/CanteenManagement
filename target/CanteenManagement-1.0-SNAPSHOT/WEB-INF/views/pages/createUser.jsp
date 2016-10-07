@@ -17,8 +17,8 @@
                     <form:input type="hidden" path="id"/>
                     <tr>
                         <td style="padding-right: 20px"><form:label path="firstName" class="form-group" >First Name </form:label></td>
-                    
-                        <td><form:input path="firstName" /></td>
+
+                            <td><form:input path="firstName" /></td>
                     </tr>
                     <tr>
                         <td><form:label path="lastName" class="form-group">Last Name</form:label></td>
@@ -51,7 +51,7 @@
 
                         <!--Option to show update or submit button according to test result-->
                         <c:choose>
-                            <c:when test= "${edit}">
+                            <c:when test= "${editUser}">
                                 <td colspan="2">
                                     <input type="submit" value="Update" class="btn btn-success btn-lg"/>
                                 </td>
@@ -68,6 +68,8 @@
                 </table> 
 
             </form:form>
+            <td><a href="viewUsers" class="btn btn-success" role="button">Display All Users</a></td>
+
 
 
         </div>

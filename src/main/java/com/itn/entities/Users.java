@@ -24,7 +24,7 @@ import javax.persistence.Table;
  *
  * @author Hp
  */
-//@Table(name = "User")
+@Table(name = "User")
 @Entity
 public class Users implements Serializable {
 
@@ -53,6 +53,19 @@ public class Users implements Serializable {
             inverseJoinColumns = {
                 @JoinColumn(name = "USER_PROFILE_ID")})
     private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+     @Column
+     //keeping the default value as false which is 0
+    private boolean del = false;
+
+    public boolean isDel() {
+        return del;
+    }
+
+    public void setDel(boolean del) {
+        this.del = del;
+    }
+     
+     
 
     public Users() {
     }

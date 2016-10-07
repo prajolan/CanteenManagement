@@ -6,7 +6,12 @@
 package com.itn.controller;
 
 import com.itn.entities.FoodInventory;
+import com.itn.entities.UserProfile;
+import com.itn.entities.Users;
 import com.itn.services.FoodInventoryService;
+import com.itn.services.UserProfileService;
+import com.itn.services.UserService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -29,42 +34,52 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class IndexController {
-    Logger logger=LoggerFactory.getLogger(IndexController.class);
+
+    Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private FoodInventoryService foodInventoryService;
+     @Autowired
+    private UserService userService;
+     
+      @Autowired
+    private UserProfileService userProfileService;
 
-    @RequestMapping(value = { "/letssee"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/letssee"}, method = RequestMethod.GET)
     public String letssee(ModelMap model) {
         return "FoodManagement";
     }
-    
-    @RequestMapping(value = { "/"}, method = RequestMethod.GET)
+
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
         return "home";
     }
- 
+    
+     @RequestMapping(value = "/newuser")
+    public String loadUserPage(ModelMap mp) {
+        mp.addAttribute("user", new Users());
+        return "createUser";
 
-//  
-    //    -------------------------loading page for new FoodEntry ends here------------------------
-
-    //    -------------------------loading page for new User Entry------------------------
-   
-    //    -------------------------loading page for new User Entry ends here------------------------
-
-    //    -------------------------Saving new USER Entry------------------------
-
-    @RequestMapping(value = "/newuser", method = RequestMethod.POST)
+    }
+     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
     public String submitUser(@ModelAttribute Users user, ModelMap mp) {
         userService.save(user);
         mp.addAttribute("users", userService.findAll());
-        return null;
+        return "redirect:newuser";
 
     }
-    
-   
-    //    -------------------------Saving new Entry------------------------
 
+    @ModelAttribute("roles")
+    public List<UserProfile> initializeProfiles() {
+        return userProfileService.findAll();
+    }
+
+//  
+    //    -------------------------loading page for new FoodEntry ends here------------------------
+    //    -------------------------loading page for new User Entry------------------------
+    //    -------------------------loading page for new User Entry ends here------------------------
+    //    -------------------------Saving new USER Entry------------------------
+    //    -------------------------Saving new Entry------------------------
     @RequestMapping(value = "/newFood", method = RequestMethod.POST)
     public String submitFood(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
         foodInventoryService.save(foodInventory);
@@ -73,15 +88,8 @@ public class IndexController {
         return "list";
 
     }
-
-  
-    
-    
-
-
-    
-
 //    ----------------------------------Security Log in------------------------------------------------
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     //When you type admin it directly goes to login page, this is inbuilt function by spring
     public String adminPage(ModelMap model) {
@@ -98,7 +106,7 @@ public class IndexController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
-       
+
         return "login";
     }
 
@@ -124,11 +132,7 @@ public class IndexController {
     }
 
     //Usued for enum classes to pull all the options of UserProfile
-
-    
-   
 //    ----------------------------------Get Principle Method-------------------------------------------
-
     private String getPrincipal() {
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

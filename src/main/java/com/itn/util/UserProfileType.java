@@ -10,8 +10,9 @@ package com.itn.util;
  * @author Hp
  */
 public enum UserProfileType {
-    USER("USER"),
-    ADMIN("ADMIN");
+    ADMIN("ADMIN"),
+    USER("USER")
+    ;
     
     private String userProfileType;
 

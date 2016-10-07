@@ -15,7 +15,7 @@
             <hr>
         </div>
         <div id="viewFood" class="col-lg-5">
-            <h1>${sum}</h1>
+            <h1>Total Price: ${sum}</h1>
 
 
             <table class="table table-bordered" id="tables">
@@ -40,7 +40,7 @@
 
                         <td>${sn.count}</td>
                         <td>${foodItem.foodName}</td>
-                        <td>${foodItem.price} .Rs</td>
+                        <td>Rs. ${foodItem.price}</td>
                         <td>
                     <fmt:formatDate value="${foodItem.date}" pattern="yyyy-MMM-dd"/></td>
                     <td><a href="edit-${foodItem.id}" class="btn btn-warning" role="button">Edit</a></td>

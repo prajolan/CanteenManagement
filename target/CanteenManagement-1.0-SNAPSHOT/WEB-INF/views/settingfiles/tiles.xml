@@ -12,11 +12,11 @@
        <put-attribute name="footer" value="/WEB-INF/views/template/defaultFooter.jsp" />  
    </definition>  
   
-   <!-- Home Page -->
+<!--    Home Page 
    <definition name="home" extends="base-definition">  
        <put-attribute name="title" value="Welcome" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />  
-   </definition>  
+   </definition>  -->
  
    <!-- View Food Page -->
    <definition name="viewFood" extends="base-definition">  
@@ -30,21 +30,27 @@
        <put-attribute name="body" value="/WEB-INF/views/pages/addFood.jsp" />  
    </definition>  
    
-<<<<<<< HEAD
     <!-- Create User page -->
    <definition name="createUser" extends="base-definition">  
        <put-attribute name="title" value="Create User" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/createUser.jsp" />  
    </definition>  
-=======
+   
+    <!-- View User page -->
+   <definition name="viewUsers" extends="base-definition">  
+       <put-attribute name="title" value="All User" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/viewUsers.jsp" />  
+   </definition> 
+   
+   
     <definition name="userRegistration" extends="base-definition">  
        <put-attribute name="title" value="user" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/userRegistration.jsp" />  
    </definition> 
+   
     <definition name="FoodManagement" extends="base-definition">  
        <put-attribute name="title" value="food" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/FoodManagement.jsp" />  
    </definition> 
->>>>>>> 264a7412442d1b3598ef3b44cf96a8f0898418e0
   
 </tiles-definitions>
