@@ -13,7 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,11 +30,16 @@ public class AdminControllerWebservice {
     private FoodInventoryService foodInventoryService;
 
     //    -------------------------Displaying total list of Entry------------------------
-    @RequestMapping("/allFoodEnventoroy")
+    @RequestMapping("/foods")
     public ResponseEntity<List<FoodInventory>> findAllList() {
         List<FoodInventory> allFoodList = foodInventoryService.findAll();
         logger.info("size is {}",allFoodList.size());
         return new ResponseEntity<List<FoodInventory>>(allFoodList, HttpStatus.OK);
+    }
+    @RequestMapping(value = "/food",method = RequestMethod.POST)
+    public ResponseEntity<Void> createFood(@RequestBody FoodInventory food){
+        foodInventoryService.save(food);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
 }

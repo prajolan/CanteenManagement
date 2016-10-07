@@ -2,13 +2,13 @@
 
 angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', function($scope, FoodService) {
     var self = this;
-    self.food={"id":1,"foodName":"noodle","price":10,"date":1475345700000,"del":false};
+    self.food={"id":null, "foodName":'', "price":'', "del":false};
     self.foods=[];
-//
-//    self.submit = submit;
+
+    self.submit = submit;
 //    self.edit = edit;
 //    self.remove = remove;
-//    self.reset = reset;
+    self.reset = reset;
 
 
     fetchAllUsers();
@@ -26,16 +26,17 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
         );
     }
 
-//    function createUser(user){
-//        UserService.createUser(user)
-//            .then(
-//            fetchAllUsers,
-//            function(errResponse){
-//                console.error('Error while creating User');
-//            }
-//        );
-//    }
-//
+    function createFood(food){
+        console.error('contoller ko cl vayo');
+        FoodService.createFood(food)
+            .then(
+            fetchAllUsers,
+            function(errResponse){
+                console.error('Error while creating User');
+            }
+        );
+    }
+
 //    function updateUser(user, id){
 //        UserService.updateUser(user, id)
 //            .then(
@@ -55,18 +56,18 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
 //            }
 //        );
 //    }
-//
-//    function submit() {
-//        if(self.user.id===null){
-//            console.log('Saving New User', self.user);
-//            createUser(self.user);
-//        }else{
-//            updateUser(self.user, self.user.id);
-//            console.log('User updated with id ', self.user.id);
-//        }
-//        reset();
-//    }
-//
+
+    function submit() {
+        if(self.food.id==null){
+            console.log('Saving New User', self.food);
+            createFood(self.food);
+        }else{
+            updateFood(self.food, self.food.id);
+            console.log('User updated with id ', self.food.id);
+        }
+        reset();
+    }
+
 //    function edit(id){
 //        console.log('id to be edited', id);
 //        for(var i = 0; i < self.users.length; i++){
@@ -86,9 +87,9 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
 //    }
 //
 //
-//    function reset(){
-//        self.user={id:null,username:'',address:'',email:''};
-//        $scope.myForm.$setPristine(); //reset Form
-//    }
+    function reset(){
+        self.user={id:null,foodName:'',price:''};
+        $scope.myForm.$setPristine(); //reset Form
+    }
 
 }]);
