@@ -67,7 +67,7 @@ public class ProjectConfiguration extends WebMvcConfigurerAdapter {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setSuffix(".jsp");
-        viewResolver.setPrefix("/WEB-INF/views/pages/");
+        viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setOrder(1);//we need this when there is more than one resolver
         registry.viewResolver(viewResolver);

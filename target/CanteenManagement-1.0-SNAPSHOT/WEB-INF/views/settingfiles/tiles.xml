@@ -12,11 +12,11 @@
        <put-attribute name="footer" value="/WEB-INF/views/template/defaultFooter.jsp" />  
    </definition>  
   
-<!--    Home Page 
+    <!--Home Page--> 
    <definition name="home" extends="base-definition">  
        <put-attribute name="title" value="Welcome" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />  
-   </definition>  -->
+   </definition>  
  
    <!-- View Food Page -->
    <definition name="viewFood" extends="base-definition">  
