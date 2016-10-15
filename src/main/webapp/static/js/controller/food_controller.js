@@ -6,22 +6,22 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
     self.foods=[];
 
     self.submit = submit;
-   self.edit = edit;
-//    self.remove = remove;
+    self.edit = edit;
+    self.remove = remove;
     self.reset = reset;
 
 
-    fetchAllUsers();
+    fetchAllFoods();
 
-    function fetchAllUsers(){
-        FoodService.fetchAllUsers()
+    function fetchAllFoods(){
+        FoodService.fetchAllFoods()
             .then(
             function(d) {
                 console.error('fetched');
                 self.foods = d;
             },
             function(errResponse){
-                console.error('Error while fetching Users');
+                console.error('Error while fetching Foods');
             }
         );
     }
@@ -30,9 +30,9 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
         console.error('contoller ko cl vayo');
         FoodService.createFood(food)
             .then(
-            fetchAllUsers,
+            fetchAllFoods,
             function(errResponse){
-                console.error('Error while creating User');
+                console.error('Error while creating Foods');
             }
         );
     }
@@ -40,22 +40,22 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
     function updateFood(food, id){
         FoodService.updateFood(food, id)
             .then(
-            fetchAllUsers,
+            fetchAllFoods,
             function(errResponse){
-                console.error('Error while updating User');
+                console.error('Error while updating Foods');
             }
         );
     }
 
-//    function deleteUser(id){
-//        UserService.deleteUser(id)
-//            .then(
-//            fetchAllUsers,
-//            function(errResponse){
-//                console.error('Error while deleting User');
-//            }
-//        );
-//    }
+    function deleteFood(id){
+        FoodService.deleteFood(id)
+            .then(
+            fetchAllFoods,
+            function(errResponse){
+                console.error($log.error(message));
+            }
+        );
+    }
 
     function submit() {
         if(self.food.id==null){
@@ -68,27 +68,28 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
         reset();
     }
 
-//    function edit(id){
-//        console.log('id to be edited', id);
-//        for(var i = 0; i < self.users.length; i++){
-//            if(self.users[i].id === id) {
-//                self.user = angular.copy(self.users[i]);
-//                break;
-//            }
-//        }
-//    }
-//
-//    function remove(id){
-//        console.log('id to be deleted', id);
-//        if(self.user.id === id) {//clean form if the user to be deleted is shown there.
-//            reset();
-//        }
-//        deleteUser(id);
-//    }
-//
-//
+    function edit(id){
+        console.log('id to be edited', id);
+        for(var i = 0; i < self.foods.length; i++){
+            if(self.foods[i].id === id) {
+                self.food = angular.copy(self.foods[i]);
+                break;
+            }
+        }
+    }
+
+    function remove(id){
+        console.log('id to be deleted', id);
+        if(self.food.id === id) {//clean form if the food to be deleted is shown there.
+            reset();
+        }
+        deleteFood(id);
+    }
+
+
     function reset(){
-        self.user={id:null,foodName:'',price:''};
+        console.log('Error');
+        self.food={id:null,foodName:'',price:''};
         $scope.myForm.$setPristine(); //reset Form
     }
 

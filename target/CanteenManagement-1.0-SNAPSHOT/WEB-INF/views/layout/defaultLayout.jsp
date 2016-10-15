@@ -56,7 +56,14 @@
             }
             #sidebar{
                 padding-top: 51px;
+
+                padding-bottom: 396px;
+            }
+            #createUserStyle{
+                max-width: 500px;
+
                 /*padding-bottom: 396px;*/
+
             }
 
         </style>

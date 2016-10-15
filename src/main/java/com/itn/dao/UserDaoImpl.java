@@ -41,14 +41,15 @@ public class UserDaoImpl extends AbstractDao<Long, Users> implements UserDao {
     @Override
     public void deleteById(long id) {
         Users use = getByKey(id);
-        delete(use);
+        //delete(use);
+        use.setDel(true);
     }
 
     @Override
     public List<Users> findAll() {
 //        return (List<Users>)findAllEntity();
         //Query query=getSession().createQuery("SELECT u FROM Users u WHERE u.firstName LIKE 'Pra%'");
-        Query query=getSession().createQuery("SELECT u FROM Users u"); //to display all queries
+        Query query=getSession().createQuery("SELECT u FROM Users u WHERE u.del=false"); //Displaying undeleted users
         return query.list();
 
     }

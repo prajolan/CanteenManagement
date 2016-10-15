@@ -1,24 +1,25 @@
- <div class="container-fluid">
-            <div class="row content">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>Login page</title>
+        <link href="<c:url value='/static/css/bootstrap.css' />"  rel="stylesheet"></link>
+        <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+    </head>
 
-                <div class="col-sm-9" id="div1">
-                    <h4><small>RECENT POSTS</small></h4>
-                    <hr>
+    <body>
+        <div id="mainWrapper">
+            <div class="login-container">
+                <div class="login-card">
+            <center>
+                    <a href="admin" class="btn btn-success btn-lg" role="button" style="margin-right: 71px">ADMIN</a>
 
-                    <h2>I Love Food</h2>
-                    <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
-                    <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-                    <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <br><br>
-
-                    <h4><small>RECENT POSTS</small></h4>
-                    <hr>
-                    <h2>Officially Blogging</h2>
-                    <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
-                    <h5><span class="label label-success">Lorem</span></h5><br>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <hr>
-                    <p><span class="badge">2</span> Comments:</p><br>
-                </div>
-            </div>
+                    <a href="user" class="btn btn-success btn-lg" role="button">USER</a>
+            </center>
         </div>
+            </div>
+            </div>
+
+    </body>
+</html>

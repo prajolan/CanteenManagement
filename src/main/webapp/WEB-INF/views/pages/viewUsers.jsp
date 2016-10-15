@@ -5,7 +5,7 @@
 <div class="container-fluid">
 
 
-    <center> <h1>View Food</h1>
+    <center> <h1>All Users</h1>
     </center>
 
 
@@ -15,7 +15,6 @@
             <hr>
         </div>
         <div id="viewFood" class="col-lg-5">
-            <h1>Total Price: ${sum}</h1>
 
 
             <table class="table table-bordered" id="tables">
@@ -23,9 +22,11 @@
                 <thead>
                     <tr>
                         <th>S.N</th>
-                        <th>Food Name</th>
-                        <th>Price</th>
-                        <th>Entry Added</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Roles</th>
 
                     </tr>
                 </thead>
@@ -34,17 +35,19 @@
 
                 </tbody>
 
-                <c:forEach items="${foodItem}" var="foodItem" varStatus="sn">
+                <c:forEach items="${users}" var="users" varStatus="sn">
 
                     <tr>
 
                         <td>${sn.count}</td>
-                        <td>${foodItem.foodName}</td>
-                        <td>Rs. ${foodItem.price}</td>
-                        <td>
-                    <fmt:formatDate value="${foodItem.date}" pattern="yyyy-MMM-dd"/></td>
-                    <td><a href="edit-${foodItem.id}" class="btn btn-warning" role="button">Edit</a></td>
-                    <td><a href="delete?id=${foodItem.id}" class="btn btn-danger" role="button">Delete</a></td>
+                        <td>${users.firstName}</td>
+                        <td>${users.lastName}</td>
+                        <td>${users.userName}</td>
+                        <td>${users.state}</td>
+                        <td></td>
+                        
+                    <td><a href="editUser-${users.id}" class="btn btn-warning" role="button">Edit</a></td>
+                    <td><a href="deleteUser?id=${users.id}" class="btn btn-danger" role="button">Delete</a></td>
 
 
                     </tr>
@@ -52,7 +55,7 @@
                 </c:forEach>
             </table>
             <div id="addFood" class="col-lg-4">
-        <a href="newFood" class="btn btn-success btn-lg" role="button">Add Item</a></td>
+        <a href="newuser" class="btn btn-success btn-lg" role="button">Add User</a></td>
 
     </div>
 

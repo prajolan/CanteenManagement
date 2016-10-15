@@ -9,6 +9,7 @@ package com.itn.util;
  *
  * @author Hp
  */
+//This class has not been used right now
 public enum State {
     ACTIVE("Active"),
     INACTIVE("Deleted");

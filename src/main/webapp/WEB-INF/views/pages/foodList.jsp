@@ -14,7 +14,7 @@
 
             </tbody>
 
-            <c:forEach items="${foodItem}" var="foodItem" varStatus="countt">
+            <c:forEach items="${foodItem}" var="foodItem" varStatus="sn">
 
                 <tr>
 
@@ -24,7 +24,7 @@
                     <td>
                         <fmt:formatDate value="${foodItem.date}" pattern="yyyy-MMM-dd"/></td>
                     <td><a href="edit-${foodItem.id}" class="btn btn-warning" role="button">Edit</a></td>
-                    <td><a href="delete?id=${foodItem.id}" class="btn btn-danger" role="button">delete</a></td>
+                    <td><a href="delete?id=${foodItem.id}" class="btn btn-danger" role="button">Delete</a></td>
 
 
                 </tr>

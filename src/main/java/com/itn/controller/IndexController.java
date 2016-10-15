@@ -6,7 +6,12 @@
 package com.itn.controller;
 
 import com.itn.entities.FoodInventory;
+import com.itn.entities.UserProfile;
+import com.itn.entities.Users;
 import com.itn.services.FoodInventoryService;
+import com.itn.services.UserProfileService;
+import com.itn.services.UserService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -29,40 +34,52 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class IndexController {
-    Logger logger=LoggerFactory.getLogger(IndexController.class);
+
+    Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     private FoodInventoryService foodInventoryService;
+     @Autowired
+    private UserService userService;
+     
+      @Autowired
+    private UserProfileService userProfileService;
 
-    @RequestMapping(value = { "/letssee"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/letssee"}, method = RequestMethod.GET)
     public String letssee(ModelMap model) {
         return "FoodManagement";
     }
-    
-    @RequestMapping(value = { "/"}, method = RequestMethod.GET)
+
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {
         return "home";
     }
- 
-
-//    -------------------------loading page for new FoodEntry------------------------
-    @RequestMapping(value = "/newFood")
-    public String loadPage(ModelMap mp) {
-        mp.addAttribute("foodInventory", new FoodInventory());
-        return "addFood";
+    
+     @RequestMapping(value = "/newuser")
+    public String loadUserPage(ModelMap mp) {
+        mp.addAttribute("user", new Users());
+        return "createUser";
 
     }
+     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
+    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
+        userService.save(user);
+        mp.addAttribute("users", userService.findAll());
+        return "redirect:newuser";
+
+    }
+
+    @ModelAttribute("roles")
+    public List<UserProfile> initializeProfiles() {
+        return userProfileService.findAll();
+    }
+
+//  
     //    -------------------------loading page for new FoodEntry ends here------------------------
-
     //    -------------------------loading page for new User Entry------------------------
-   
     //    -------------------------loading page for new User Entry ends here------------------------
-
     //    -------------------------Saving new USER Entry------------------------
-
-   
     //    -------------------------Saving new Entry------------------------
-
     @RequestMapping(value = "/newFood", method = RequestMethod.POST)
     public String submitFood(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
         foodInventoryService.save(foodInventory);
@@ -71,45 +88,25 @@ public class IndexController {
         return "list";
 
     }
-
-  
-    
-    
-
-
-    //    -------------------------Editing Entry------------------------
-    @RequestMapping(value = "/edit-{foodid}", method = RequestMethod.GET)
-    public String editFood(ModelMap mp, @PathVariable long foodid) {
-        FoodInventory food = foodInventoryService.findById(foodid);
-        mp.addAttribute("foodInventory", food);
-        mp.addAttribute("edit", true);
-        return "registration";
-    }
-
-    @RequestMapping(value = "/edit-{userid}", method = RequestMethod.POST)
-    public String postEditedUser(@ModelAttribute FoodInventory foodInventory, ModelMap mp) {
-        foodInventoryService.update(foodInventory);
-
-        return "redirect:list";
-    }
-
 //    ----------------------------------Security Log in------------------------------------------------
+
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     //When you type admin it directly goes to login page, this is inbuilt function by spring
     public String adminPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());//This only gives the username so it can compare for sercituy
-        return "welcome";
+        return "redirect:/admin/home";
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     //When you type admin it directly goes to login page, this is inbuilt function by spring
     public String userPage(ModelMap model) {
         model.addAttribute("user", getPrincipal());//This only gives the username so it can compare for sercituy
-        return "welcome";
+        return "home";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
+
         return "login";
     }
 
@@ -135,10 +132,7 @@ public class IndexController {
     }
 
     //Usued for enum classes to pull all the options of UserProfile
-
-   
 //    ----------------------------------Get Principle Method-------------------------------------------
-
     private String getPrincipal() {
         String userName = null;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
