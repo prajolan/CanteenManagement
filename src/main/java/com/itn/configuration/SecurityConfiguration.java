@@ -61,8 +61,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 //		.and().formLogin(). To make default login page
                 .and().formLogin().loginPage("/login")//to make custome login page
                 .usernameParameter("username").passwordParameter("password")
-                .and().csrf()//This line is optional
-                .and().exceptionHandling().accessDeniedPage("/Access_Denied");//
+                .and().csrf().disable()//This line is optional
+                .exceptionHandling().accessDeniedPage("/Access_Denied");//
 
     }
     
