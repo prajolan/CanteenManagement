@@ -22,6 +22,7 @@ public class FoodInventoryDaoImpl extends AbstractDao<Long, FoodInventory> imple
 
     @Override
     public void save(FoodInventory fi) {
+        System.out.println("saveFunction loaded");
         persist(fi);
     }
 
