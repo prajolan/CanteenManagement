@@ -6,7 +6,7 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
     self.foods=[];
 
     self.submit = submit;
-//    self.edit = edit;
+   self.edit = edit;
 //    self.remove = remove;
     self.reset = reset;
 
@@ -37,16 +37,16 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
         );
     }
 
-//    function updateUser(user, id){
-//        UserService.updateUser(user, id)
-//            .then(
-//            fetchAllUsers,
-//            function(errResponse){
-//                console.error('Error while updating User');
-//            }
-//        );
-//    }
-//
+    function updateFood(food, id){
+        FoodService.updateFood(food, id)
+            .then(
+            fetchAllUsers,
+            function(errResponse){
+                console.error('Error while updating User');
+            }
+        );
+    }
+
 //    function deleteUser(id){
 //        UserService.deleteUser(id)
 //            .then(
@@ -59,11 +59,11 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
 
     function submit() {
         if(self.food.id==null){
-            console.log('Saving New User', self.food);
+            console.log('Saving New Food', self.food);
             createFood(self.food);
         }else{
             updateFood(self.food, self.food.id);
-            console.log('User updated with id ', self.food.id);
+            console.log('Food updated with id ', self.food.id);
         }
         reset();
     }
