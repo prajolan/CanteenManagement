@@ -62,4 +62,9 @@ public class FoodInventoryServiceImpl implements FoodInventoryService {
         return display;
     }
 
+    @Override
+    public boolean isFoodExist(FoodInventory food) {
+        return foodInventoryDao.findByFoodName(food.getFoodName()) != null;
+    }
+
 }
