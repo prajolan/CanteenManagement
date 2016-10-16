@@ -27,7 +27,7 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
     }
 
     function createFood(food){
-        console.error('contoller ko cl vayo');
+        console.log('contoller ko cl vayo');
         FoodService.createFood(food)
             .then(
             fetchAllFoods,

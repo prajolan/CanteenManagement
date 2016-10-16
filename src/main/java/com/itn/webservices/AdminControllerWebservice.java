@@ -6,7 +6,9 @@
 package com.itn.webservices;
 
 import com.itn.entities.FoodInventory;
+import com.itn.entities.Users;
 import com.itn.services.FoodInventoryService;
+import com.itn.services.UserService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,9 @@ public class AdminControllerWebservice {
 
     @Autowired
     private FoodInventoryService foodInventoryService;
+    
+    @Autowired
+    private UserService userService;
 
     //    -------------------------Displaying total list of Entry------------------------
     @RequestMapping("/foods")
@@ -106,4 +111,28 @@ public class AdminControllerWebservice {
         return new ResponseEntity<FoodInventory>(HttpStatus.NO_CONTENT);
     }
 
+    //    -------------------------Displaying total list of Entry for USERS!!!------------------------
+    @RequestMapping("/users")
+    public ResponseEntity<List<Users>> findAllUsers() {
+        List<Users> allUserList = userService.findAll();
+        logger.info("size is {}",allUserList.size());
+        System.out.println(allUserList.size());
+        return new ResponseEntity<List<Users>>(allUserList, HttpStatus.OK);
+    }
+    
+    //-------------------Retrieve Single User--------------------------------------------------------
+      
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Users> getUser(@PathVariable("id") long id) {
+        logger.info("Fetching user with id " + id);
+        Users user = userService.findById(id);
+        if (user == null) {
+            logger.info("User with id " + id + " not found");
+            return new ResponseEntity<Users>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Users>(user, HttpStatus.OK);
+    }
+    
+    
+    
 }
