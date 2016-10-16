@@ -24,7 +24,7 @@
                             <div class="formcontainer">
                                 <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                                     <input type="hidden" ng-model="ctrl.food.id" />
-                                    <div class="row">
+                                    <div class="row" style="padding-top: 15px; padding-left: 15px">
                                         <div class="form-group col-md-12">
                                             <label class="col-md-2 control-lable" for="file">Inventory Name</label>
                                             <div class="col-md-7">
@@ -38,7 +38,7 @@
                                     </div>
 
 
-                                    <div class="row">
+                                    <div class="row" style="padding-top: 15px; padding-left: 15px">
                                         <div class="form-group col-md-12">
                                             <label class="col-md-2 control-lable" for="file">Price</label>
                                             <div class="col-md-7">
@@ -49,10 +49,10 @@
 
 
 
-                                    <div class="row">
-                                        <div class="form-actions floatRight">
-                                            <input type="submit"  value="{{!ctrl.food.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-                                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                                    <div class="row" >
+                                        <div class="form-actions floatRight" style="padding-top: 15px; padding-left: 25px">
+                                            <input type="submit"  value="{{!ctrl.food.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid" style="width:100px">
+                                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine" style="width:100px">Reset Form</button>
                                         </div>
                                     </div>
                                 </form>
@@ -65,14 +65,16 @@
                                 <table class="table table-striped">    
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
+                                            <th>S.N</th>
                                             <th>Food Name</th>
                                             <th>Price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="f in ctrl.foods">
+                                        <tr ng-repeat="f in ctrl.foods" varStatus="sn">
                                             <td><span ng-bind="f.id"></span></td>
+                                            <!--<td><span>{{rowRenderIndex+1}}</span></td>-->
+                                            
                                             <td><span ng-bind="f.foodName"></span></td>
                                             <td><span ng-bind="f.price"></span></td>
                                             <td>

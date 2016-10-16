@@ -49,6 +49,11 @@ public class IndexController {
     public String letssee(ModelMap model) {
         return "FoodManagement";
     }
+    
+    @RequestMapping(value = {"/usersee"}, method = RequestMethod.GET)
+    public String usersee(ModelMap model){
+    return "UserManagement";
+    }
 
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)
     public String homePage(ModelMap model) {

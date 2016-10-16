@@ -49,8 +49,13 @@
    </definition> 
    
     <definition name="FoodManagement" extends="base-definition">  
-       <put-attribute name="title" value="food" />  
+       <put-attribute name="title" value="Food Inventory" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/FoodManagement.jsp" />  
+   </definition> 
+   
+   <definition name="UserManagement" extends="base-definition">  
+       <put-attribute name="title" value="User Inventory" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/UserManagement.jsp" />  
    </definition> 
   
 </tiles-definitions>

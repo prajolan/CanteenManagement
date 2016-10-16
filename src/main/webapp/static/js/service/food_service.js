@@ -31,7 +31,7 @@ angular.module('myApp').factory('FoodService', ['$http', '$q', function($http, $
     }
 
     function createFood(food) {
-        console.error('service ma aayo');
+        console.log('service ma aayo');
         var deferred = $q.defer();
         $http.post(REST_SERVICE_URI+'food', food)
             .then(
@@ -49,13 +49,13 @@ angular.module('myApp').factory('FoodService', ['$http', '$q', function($http, $
 
     function updateFood(food, id) {
         var deferred = $q.defer();
-        $http.put(REST_SERVICE_URI+id, food)
+        $http.put(REST_SERVICE_URI+'food/'+id, food)
             .then(
             function (response) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while updating Food');
+                console.error('Error while updating Food in service');
                 deferred.reject(errResponse);
             }
         );
@@ -64,7 +64,7 @@ angular.module('myApp').factory('FoodService', ['$http', '$q', function($http, $
 
     function deleteFood(id) {
         var deferred = $q.defer();
-        $http.delete(REST_SERVICE_URI+id)
+        $http.delete(REST_SERVICE_URI+'food/'+id)
             .then(
             function (response) {
                 deferred.resolve(response.data);
