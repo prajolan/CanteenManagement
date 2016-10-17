@@ -13,7 +13,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
 
     fetchAllUsers();
 
-    function fetchAllUserss(){
+    function fetchAllUsers(){
         UserService.fetchAllUsers()
             .then(
             function(d) {
