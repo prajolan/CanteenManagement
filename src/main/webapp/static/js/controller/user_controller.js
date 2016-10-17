@@ -17,7 +17,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
         UserService.fetchAllUsers()
             .then(
             function(d) {
-                console.error('fetched');
+                console.log('fetched');
                 self.users = d;
             },
             function(errResponse){

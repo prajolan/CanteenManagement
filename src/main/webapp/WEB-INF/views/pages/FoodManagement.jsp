@@ -7,16 +7,10 @@
 
 <div class="container-fluid">
 
-
-    <center> <h1>View Food</h1>
-    </center>
-
-
     <div class="row content">
 
         <div class="col-sm-9" id="div1">
-            <hr>
-            <body ng-app="myApp" >
+            <div ng-app="myApp" >
                 <div  class="ng-cloak">
                     <div  ng-controller="FoodController as ctrl" class="generic-container">
                         <div class="panel panel-default">
@@ -96,3 +90,8 @@
                     </div>
 
                 </div>
+            </div>
+        </div>
+
+    </div>
+</div>

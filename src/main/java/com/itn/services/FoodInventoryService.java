@@ -28,4 +28,6 @@ public interface FoodInventoryService {
 
     public List<FoodInventory> findAll();
 
+    public boolean isFoodExist(FoodInventory food);
+
 }

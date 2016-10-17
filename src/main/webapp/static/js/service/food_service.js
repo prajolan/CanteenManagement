@@ -2,7 +2,7 @@
 
 angular.module('myApp').factory('FoodService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8007/CanteenManagement/';
+    var REST_SERVICE_URI = 'http://localhost:8084/CanteenManagement/';
 
     var factory = {
         fetchAllFoods: fetchAllFoods,

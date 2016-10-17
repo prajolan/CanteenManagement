@@ -23,7 +23,7 @@
                             <div class="panel-heading"><span class="lead">Inventory Registration Form </span>
                             </div>
                             <div class="formcontainer">
-                                <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                                <form ng-submit="ctrl.submit()" name="userForm" class="form-horizontal">
                                     <input type="hidden" ng-model="ctrl.user.id" />
 
                                     <div class="row" style="padding-top: 15px; padding-left: 15px">
@@ -31,9 +31,9 @@
                                             <label class="col-md-2 control-lable" for="file">Username</label>
                                             <div class="col-md-7">
                                                 <input type="text" ng-model="ctrl.user.userName" name="userName" class="username form-control input-sm" placeholder="Enter Username name" required ng-minlength="3"/>
-                                                <div class="has-error" ng-show="myForm.$dirty">
-                                                    <span ng-show="myForm.uname.$error.required">This is a required field</span>
-                                                    <span ng-show="myForm.uname.$error.minlength">Minimum length required is 3</span>
+                                                <div class="has-error" ng-show="userForm.$dirty">
+                                                    <span ng-show="userForm.userName.$error.required">This is a required field</span>
+                                                    <span ng-show="userForm.userName.$error.minlength">Minimum length required is 3</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,8 +78,8 @@
 
                                     <div class="row" >
                                         <div class="form-actions floatRight" style="padding-top: 15px; padding-left: 25px">
-                                            <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid" style="width:100px">
-                                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine" style="width:100px">Reset Form</button>
+                                            <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="userForm.$invalid" style="width:100px">
+                                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="userForm.$pristine" style="width:100px">Reset Form</button>
                                         </div>
                                     </div>
                                 </form>
