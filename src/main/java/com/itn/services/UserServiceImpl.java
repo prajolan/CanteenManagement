@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService{
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public List<Users> findAll() {
-       List<Users> display = userDao.findAll();
+    public List<Users> findAll(int pageid,int total) {
+       List<Users> display = userDao.findAll(pageid,total);
        return display;
     }
 
@@ -66,6 +66,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteAll() {
         userDao.deleteAll();
+    }
+
+    @Override
+    public Long userCount() {
+        return userDao.userCount();
     }
     
 }

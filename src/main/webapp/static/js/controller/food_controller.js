@@ -88,7 +88,7 @@ angular.module('myApp').controller('FoodController', ['$scope', 'FoodService', f
 
 
     function reset(){
-        console.log('Error');
+        console.log('Reset');
         self.food={id:null,foodName:'',price:''};
         $scope.myForm.$setPristine(); //reset Form
     }

@@ -46,10 +46,13 @@ public class UserDaoImpl extends AbstractDao<Long, Users> implements UserDao {
     }
 
     @Override
-    public List<Users> findAll() {
+    public List<Users> findAll(int pageid,int total) {
 //        return (List<Users>)findAllEntity();
         //Query query=getSession().createQuery("SELECT u FROM Users u WHERE u.firstName LIKE 'Pra%'");
+//        Query query=getSession().createQuery("SELECT u FROM Users u WHERE u.del=false limit"+(pageid-1)+","+total); //Displaying undeleted users
         Query query=getSession().createQuery("SELECT u FROM Users u WHERE u.del=false"); //Displaying undeleted users
+        query.setFirstResult(pageid-1);
+        query.setMaxResults(total);
         return query.list();
 
     }
@@ -57,6 +60,13 @@ public class UserDaoImpl extends AbstractDao<Long, Users> implements UserDao {
     @Override
     public void deleteAll() {
         Query query = getSession().createQuery("DELETE u FROM Users u");
+        
+    }
+
+    @Override
+    public Long userCount() {
+        Query query = getSession().createQuery("SELECT COUNT(u.id)  FROM Users u where u.del=false");
+        return (Long) query.uniqueResult();// Converting object into long
     }
 
 }

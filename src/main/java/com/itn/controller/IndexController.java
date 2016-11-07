@@ -50,6 +50,11 @@ public class IndexController {
         return "FoodManagement";
     }
     
+     @RequestMapping(value = {"/canteensee"}, method = RequestMethod.GET)
+    public String canteensee(ModelMap model) {
+        return "CanteenManagement";
+    }
+    
     @RequestMapping(value = {"/usersee"}, method = RequestMethod.GET)
     public String usersee(ModelMap model){
     return "UserManagement";
@@ -66,13 +71,13 @@ public class IndexController {
         return "createUser";
 
     }
-     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
-        userService.save(user);
-        mp.addAttribute("users", userService.findAll());
-        return "redirect:newuser";
-
-    }
+//     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
+//    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
+//        userService.save(user);
+//        mp.addAttribute("users", userService.findAll());
+//        return "redirect:newuser";
+//
+//    }
 
     @ModelAttribute("roles")
     public List<UserProfile> initializeProfiles() {

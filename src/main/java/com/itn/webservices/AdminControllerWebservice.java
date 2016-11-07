@@ -34,7 +34,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 public class AdminControllerWebservice {
   private static final  Logger logger=LoggerFactory.getLogger(AdminControllerWebservice.class);
-
+private int total=2;
     @Autowired
     private FoodInventoryService foodInventoryService;
     
@@ -118,9 +118,9 @@ public class AdminControllerWebservice {
     }
 
     //    -------------------------Displaying total list of Entry for USERS!!!------------------------
-    @RequestMapping("/users")
-    public ResponseEntity<List<Users>> findAllUsers() {
-        List<Users> allUserList = userService.findAll();
+    @RequestMapping("/users/{pageid}")
+    public ResponseEntity<List<Users>> findAllUsers(@PathVariable int pageid) {
+        List<Users> allUserList = userService.findAll(pageid,total);
         logger.info("size is {}",allUserList.size());
         System.out.println(allUserList.size());
         return new ResponseEntity<List<Users>>(allUserList, HttpStatus.OK);
@@ -139,9 +139,14 @@ public class AdminControllerWebservice {
         return new ResponseEntity<Users>(user, HttpStatus.OK);
     }
     
-    @ModelAttribute("roles")
-    public List<UserProfile> initializeProfiles() {
-        return userProfileService.findAll();
+    //@ModelAttribute("roles")
+     @RequestMapping("/users/roles")
+    public ResponseEntity <List<UserProfile>> initializeProfiles() {
+        return new ResponseEntity<List<UserProfile>> (userProfileService.findAll(), HttpStatus.OK);
+    }
+     @RequestMapping("/users/usersCount")
+    public ResponseEntity <Long> countUsers() {
+        return new ResponseEntity<Long> (userService.userCount(), HttpStatus.OK);
     }
     
 }

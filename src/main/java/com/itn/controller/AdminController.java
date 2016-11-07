@@ -109,21 +109,21 @@ public class AdminController {
         return "createUser";
 
     }
-     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
-        userService.save(user);
-        mp.addAttribute("users", userService.findAll());
-        return "redirect:newuser";
-
-    }
+//     @RequestMapping(value = "/newuser", method = RequestMethod.POST)
+//    public String submitUser(@ModelAttribute Users user, ModelMap mp) {
+//        userService.save(user);
+//        mp.addAttribute("users", userService.findAll());
+//        return "redirect:newuser";
+//
+//    }
     
-    @RequestMapping(value = "/viewUsers", method = RequestMethod.GET)
-    public String displayAllUsers(ModelMap mp){
-        List<Users> list = userService.findAll();
-        mp.addAttribute("users", list);
-        return "viewUsers";
-    
-    }
+//    @RequestMapping(value = "/viewUsers", method = RequestMethod.GET)
+//    public String displayAllUsers(ModelMap mp){
+//        List<Users> list = userService.findAll();
+//        mp.addAttribute("users", list);
+//        return "viewUsers";
+//    
+//    }
     
     //    -------------------------Editing Entry------------------------
     @RequestMapping(value = "/editUser-{usersid}", method = RequestMethod.GET)

@@ -8,14 +8,15 @@ angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $
         fetchAllUsers: fetchAllUsers,
         createUser: createUser,
         updateUser:updateUser,
-        deleteUser:deleteUser
+        deleteUser:deleteUser,
+        countUsers:countUsers
     };
 
     return factory;
 
-    function fetchAllUsers() {
+    function fetchAllUsers(pageid) {
         var deferred = $q.defer();
-        $http.get(REST_SERVICE_URI+'users')
+        $http.get(REST_SERVICE_URI+'users/'+pageid)
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -29,6 +30,24 @@ angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $
         );
         return deferred.promise;
     }
+  
+//      ------------------------Pagination------------------------
+     this.paged = function (valLists, pageSize) {
+        retVal = [];
+        for (var i = 0; i < valLists.length; i++) {
+            if (i % pageSize === 0) {
+                retVal[Math.floor(i / pageSize)] = [valLists[i]];
+            } else {
+                retVal[Math.floor(i / pageSize)].push(valLists[i]);
+            }
+        }
+        return retVal;
+    };
+    
+    //      ------------------------Pagination------------------------
+
+ 
+
 
     function createUser(user) {
         console.log('service ma aayo');
@@ -65,6 +84,20 @@ angular.module('myApp').factory('UserService', ['$http', '$q', function($http, $
     function deleteUser(id) {
         var deferred = $q.defer();
         $http.delete(REST_SERVICE_URI+'user/'+id)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error($log.error(message));
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    function countUsers(){
+       var deferred = $q.defer();
+       $http.delete(REST_SERVICE_URI+'users/usersCount')
             .then(
             function (response) {
                 deferred.resolve(response.data);

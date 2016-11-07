@@ -80,67 +80,83 @@
                                         <div class="form-group col-md-12">
                                             <label class="col-md-2 control-lable" for="userProfiles">Roles</label>
                                             <div class="col-md-7">
-                                                <select ng-model="ctrl.user.roles" ng-options=${roles}/>
-                                                </select>
-                                                <!--<select path="userProfiles" items="${roles}" multiple="true" itemValue="id" itemLabel="type" class="form-control input-sm"/></select>-->
+                                                <select name="multipleSelect" id="multipleSelect" ng-model="data.multipleSelect" multiple>
+                                                    <option value="option-1">Option 1</option>
+                                                    <option value="option-2">Option 2</option>
+                                                    <option value="option-3">Option 3</option>
+                                                </select><br>
+                                            <!--                                                <select ng-model="ctrl.user.roles" ng-options=${roles}/>
+                                                                                            </select>-->
+                                                                                            <!--<select path="userProfiles" items="${roles}" multiple="true" itemValue="id" itemLabel="type" class="form-control input-sm"/></select>-->
                                             </div>
-                                            </div>
-                                    </div>
-                                            
-
-
-
-                                            <div class="row" >
-                                                <div class="form-actions floatRight" style="padding-top: 15px; padding-left: 25px">
-                                                    <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="userForm.$invalid" style="width:100px">
-                                                    <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="userForm.$pristine" style="width:100px">Reset Form</button>
-                                                </div>
-                                            </div>
-                                            </form>
                                         </div>
                                     </div>
 
 
-                                    <div class="panel panel-default">
-                                        <!-- Default panel contents -->
-                                        <div class="panel-heading"><span class="lead">List of Users </span></div>
-                                        <div class="tablecontainer">
-                                            <table class="table table-striped">    
-                                                <thead>
-                                                    <tr>
-                                                        <th>S.N</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>User Name</th>
-                                                        <th>Status</th>
-                                                        <th>Roles</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="u in ctrl.users" varStatus="sn">
-                                                        <td><span ng-bind="u.id"></span></td>
-                                                        <!--<td><span>{{rowRenderIndex+1}}</span></td>-->
 
-                                                        <td><span ng-bind="u.firstName"></span></td>
-                                                        <td><span ng-bind="u.lastName"></span></td>
-                                                        <td><span ng-bind="u.userName"></span></td>
-                                                        <td><span ng-bind="u.state"></span></td>
-                                                        <td>
-                                                            <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
-                                                        </td>
-
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                    <div class="row" >
+                                        <div class="form-actions floatRight" style="padding-top: 15px; padding-left: 25px">
+                                            <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="userForm.$invalid" style="width:100px">
+                                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="userForm.$pristine" style="width:100px">Reset Form</button>
                                         </div>
-
-                                        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-                                        <script src="<c:url value='/static/js/app.js' />"></script>
-                                        <script src="<c:url value='/static/js/service/user_service.js' />"></script>
-                                        <script src="<c:url value='/static/js/controller/user_controller.js' />"></script>
                                     </div>
-
-
+                                </form>
                             </div>
-
                         </div>
+
+                        <div class="generic-container">
+                            <div class="panel panel-default">
+                                <!-- Default panel contents -->
+                                <div class="panel-heading"><span class="lead"><center>List of Users</center> </span></div>
+                                <div class="tablecontainer">
+                                    <table class="table table-striped">    
+                                        <thead>
+                                            <tr>
+                                                <th>S.N</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>User Name</th>
+                                                <th>Status</th>
+                                                <th>Roles</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="u in ctrl.users">
+                                                <td>{{ $index + 1}}</td>
+                                                <td><span ng-bind="u.firstName"></span></td>
+                                                <td><span ng-bind="u.lastName"></span></td>
+                                                <td><span ng-bind="u.userName"></span></td>
+                                                <td><span ng-bind="u.state"></span></td>
+                                                <td>
+                                                    <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table>
+                                    <!--<ul class="pagination pagination-sm">-->
+                                        <tr ng-repeat="n in range(ctrl.countUsers)"> 
+                                            <td>   
+                                                <button type="button" class="btn btn-success custom-width" ng-click="ctrl.fetchAllUsers(n)">test</button>
+                                            </td>
+                                        </tr>
+                                    <!--</ul>-->
+                                        </table>
+
+                                </div>
+
+                                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+                                <script src="<c:url value='/static/js/app.js' />"></script>
+                                <script src="<c:url value='/static/js/service/user_service.js' />"></script>
+                                <script src="<c:url value='/static/js/controller/user_controller.js' />"></script>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+        </div>
+    </div>
+</div>

@@ -18,6 +18,7 @@ public Users findById(long id);
 public Users findByUserName(String userName);
 public void deleteById(long id);
 public void deleteAll();
-public List<Users> findAll();
+public List<Users> findAll(int pageid,int total);
+public Long userCount();
        
 }

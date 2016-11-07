@@ -57,5 +57,10 @@
        <put-attribute name="title" value="User Inventory" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/UserManagement.jsp" />  
    </definition> 
+   
+    <definition name="CanteenManagement" extends="base-definition">  
+       <put-attribute name="title" value="Canteen Management" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/CanteenManagement.jsp" />  
+   </definition> 
   
 </tiles-definitions>
